@@ -1,0 +1,34 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "whatsapp-bot",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-24",
+  "observability": { "enabled": true },
+
+  "ai": { "binding": "AI" },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "whatsapp-bot",
+      "database_id": "3ad276e8-fd66-4a9b-9526-9d5f6c4d9087"
+    }
+  ],
+
+  "kv_namespaces": [
+    { "binding": "DEDUPE", "id": "9b3940b9826a4531b7fcd1266dab6387" }
+  ],
+
+  "vars": {
+    "VERIFY_TOKEN": "wa_bot_verify_7f3c9a2e",
+    "PHONE_NUMBER_ID": "000000000000000",
+    "OWNER_NUMBER": "",
+    "GRAPH_VERSION": "v21.0",
+    "MODEL": "@cf/zai-org/glm-4.7-flash",
+    "TRANSCRIBE_MODEL": "@cf/openai/whisper-large-v3-turbo",
+    "MAX_MSGS_PER_HOUR": "30",
+    "HANDOFF_KEYWORDS": "atendente,humano,pessoa de verdade,falar com alguem,falar com o dono,reclamacao,reclamar",
+    "SYSTEM_PROMPT": "Voce e o assistente virtual de atendimento da [NOME DO NEGOCIO]. Responda em portugues do Brasil, de forma simpatica, direta e profissional. Use mensagens curtas (no maximo 3 paragrafos), sem markdown. Nunca invente precos, prazos, enderecos ou politicas: use apenas as informacoes do negocio fornecidas abaixo. Se a resposta nao estiver nas informacoes, ou se o cliente estiver insatisfeito, peca desculpas e ofereca falar com um atendente humano. Nunca prometa descontos.",
+    "BUSINESS_CONTEXT": "- Nome: [NOME DO NEGOCIO]\n- O que fazemos: [descreva]\n- Horario de atendimento: [ex: seg a sex, 9h as 18h]\n- Endereco: [endereco]\n- Formas de pagamento: [pix, cartao, boleto]\n- Prazo de entrega: [ex: 3 a 7 dias uteis]\n- Politica de troca: [ex: 7 dias]\n- Produtos/servicos e precos: [liste]\n- Perguntas frequentes: [pergunta -> resposta]"
+  }
+}
